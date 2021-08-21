@@ -1,6 +1,7 @@
 package com.example.task.di
 
 import com.example.task.repo.MainRepo
+import com.example.task.ui.main.MainAdapter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -18,4 +19,9 @@ class AppModule {
     fun provideMainRepo(): MainRepo {
         return MainRepo(provideNetworkModule().provideNetworkInterface())
     }
+    @Provides
+    fun provideMainAdapter(): MainAdapter {
+        return MainAdapter()
+    }
+
 }

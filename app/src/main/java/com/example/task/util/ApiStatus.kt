@@ -1,4 +1,4 @@
-package com.example.task.enum
+package com.example.task.util
 
 sealed class Result<out T : Any>
 class Success<out T : Any>(val response: T) : Result<T>()

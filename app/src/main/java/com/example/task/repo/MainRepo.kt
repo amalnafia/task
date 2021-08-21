@@ -1,11 +1,11 @@
 package com.example.task.repo
 
 import android.util.Log
-import com.example.task.enum.Fail
-import com.example.task.enum.Result
-import com.example.task.enum.Success
 import com.example.task.model.Movie
 import com.example.task.network.ApiInterface
+import com.example.task.util.Fail
+import com.example.task.util.Result
+import com.example.task.util.Success
 import io.reactivex.Observable
 import javax.inject.Inject
 
