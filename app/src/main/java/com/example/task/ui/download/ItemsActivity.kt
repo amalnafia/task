@@ -17,7 +17,7 @@ import com.example.task.enum.DownloadStatus
 import com.example.task.enum.ViewStatus.*
 import com.example.task.interfaces.OnItemAdapterClick
 import com.example.task.util.DownloadWorker
-import kotlinx.android.synthetic.main.activity_download.*
+import kotlinx.android.synthetic.main.activity_items.*
 import javax.inject.Inject
 
 

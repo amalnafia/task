@@ -11,7 +11,7 @@ import com.example.task.enum.DownloadStatus
 import com.example.task.interfaces.OnItemAdapterClick
 import com.example.task.model.Movies
 import com.example.task.model.MyDiffCallback
-import kotlinx.android.synthetic.main.download_activity_item.view.*
+import kotlinx.android.synthetic.main.items_activity_recycler_item.view.*
 import javax.inject.Inject
 
 
