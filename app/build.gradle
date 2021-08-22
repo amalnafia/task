@@ -75,4 +75,7 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    def worker_version = "2.4.0"
+    implementation "androidx.work:work-runtime:$worker_version"
+
 }

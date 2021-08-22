@@ -1,7 +1,7 @@
 package com.example.task.di
 
 import android.content.Context
-import com.example.task.ui.main.DownloadActivity
+import com.example.task.ui.download.DownloadActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

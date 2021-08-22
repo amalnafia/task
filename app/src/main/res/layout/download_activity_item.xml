@@ -15,7 +15,7 @@
             android:id="@+id/fileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
+            android:layout_margin="@dimen/small_margin"
             android:textSize="@dimen/large_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fileName" />
 
+        <ImageView
+            android:id="@+id/downloadIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:padding="@dimen/small_margin"
+            android:background="@drawable/ic_download"
+            app:layout_constraintBottom_toBottomOf="@id/fileName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fileName" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/downloadPercentage"
             android:layout_width="wrap_content"
@@ -43,19 +54,22 @@
             android:layout_marginEnd="@dimen/small_margin"
             android:textSize="@dimen/large_text_size"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/progressBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/progressBar"
             app:layout_constraintTop_toTopOf="@id/progressBar"
             tools:text="98%" />
 
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/downloadStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/small_margin"
+            android:layout_margin="@dimen/small_margin"
             android:textSize="@dimen/large_text_size"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/downloadPercentage"
             tools:text="Download Status" />
