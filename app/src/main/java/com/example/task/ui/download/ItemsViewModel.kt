@@ -7,7 +7,7 @@ import com.example.task.enum.DownloadStatus
 import com.example.task.enum.ViewStatus
 import com.example.task.model.Movies
 import com.example.task.model.Resource
-import com.example.task.repo.DownloadRepo
+import com.example.task.repo.ItemsRepo
 import com.example.task.util.Fail
 import com.example.task.util.Success
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,14 +15,14 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class DownloadViewModel @Inject constructor(private val downloadRepo: DownloadRepo) : ViewModel() {
+class ItemsViewModel @Inject constructor(private val itemsRepo: ItemsRepo) : ViewModel() {
 
     private val adapterList = ArrayList<Movies>()
     private var moviesListMediatorLiveData: MutableLiveData<Resource<List<Movies>>> =
         MutableLiveData<Resource<List<Movies>>>()
 
     fun getMoviesList(): MutableLiveData<Resource<List<Movies>>> {
-        when (val getMoviesFromRepoResult = downloadRepo.getMovies()) {
+        when (val getMoviesFromRepoResult = itemsRepo.getMovies()) {
             is Fail -> {
                 Log.e("TAG", "VIEW MODEL FAIL")
                 moviesListMediatorLiveData.value = Resource(ViewStatus.ERROR, null, "Api Failed")

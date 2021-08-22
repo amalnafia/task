@@ -1,7 +1,7 @@
 package com.example.task.di
 
 import android.content.Context
-import com.example.task.ui.download.DownloadActivity
+import com.example.task.ui.download.ItemsActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -14,5 +14,5 @@ interface ApplicationComponent {
         fun create(@BindsInstance context: Context): ApplicationComponent
     }
 
-    fun inject(download: DownloadActivity)
+    fun inject(items: ItemsActivity)
 }

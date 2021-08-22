@@ -9,7 +9,7 @@ import com.example.task.util.Success
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class DownloadRepo @Inject constructor(private val apiInterface: ApiInterface) {
+class ItemsRepo @Inject constructor(private val apiInterface: ApiInterface) {
     fun getMovies(): Result<Observable<List<Movies>>> {
         return try {
             val response = apiInterface.getMovies()

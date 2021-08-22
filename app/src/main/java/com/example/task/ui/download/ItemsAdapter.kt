@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.download_activity_item.view.*
 import javax.inject.Inject
 
 
-class DownloadAdapter @Inject constructor() : RecyclerView.Adapter<DownloadAdapter.ViewHolder>() {
+class ItemsAdapter @Inject constructor() : RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
 
     private var list: List<Movies>? = null
     private var context: Context? = null
@@ -43,7 +43,7 @@ class DownloadAdapter @Inject constructor() : RecyclerView.Adapter<DownloadAdapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.download_activity_item, parent, false))
+            .inflate(R.layout.items_activity_recycler_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -64,7 +64,7 @@ class DownloadAdapter @Inject constructor() : RecyclerView.Adapter<DownloadAdapt
         fun bind(movies: Movies) {
             itemView.fileName.text = movies.name
             itemView.downloadStatus.text = movies.downloadStatus.toString().lowercase()
-            itemView.downloadPercentage.text = movies.downloadPercentage.toString() + "%"
+            itemView.downloadPercentage.text = "${movies.downloadPercentage}  %"
             setItemViewVisibility(movies)
         }
 

@@ -1,7 +1,7 @@
 package com.example.task.di
 
-import com.example.task.repo.DownloadRepo
-import com.example.task.ui.download.DownloadAdapter
+import com.example.task.repo.ItemsRepo
+import com.example.task.ui.download.ItemsAdapter
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -16,12 +16,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideDownloadRepo(): DownloadRepo {
-        return DownloadRepo(provideNetworkModule().provideNetworkInterface())
+    fun provideItemsRepo(): ItemsRepo {
+        return ItemsRepo(provideNetworkModule().provideNetworkInterface())
     }
+
     @Provides
-    fun provideMainAdapter(): DownloadAdapter {
-        return DownloadAdapter()
+    fun provideMainAdapter(): ItemsAdapter {
+        return ItemsAdapter()
     }
 
 }

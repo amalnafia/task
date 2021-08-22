@@ -21,15 +21,15 @@ import kotlinx.android.synthetic.main.activity_download.*
 import javax.inject.Inject
 
 
-class DownloadActivity : AppCompatActivity(), OnItemAdapterClick {
+class ItemsActivity : AppCompatActivity(), OnItemAdapterClick {
     @Inject
-    lateinit var downloadViewModel: DownloadViewModel
+    lateinit var itemsViewModel: ItemsViewModel
 
     @Inject
-    lateinit var downloadAdapter: DownloadAdapter
+    lateinit var itemsAdapter: ItemsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_download)
+        setContentView(R.layout.activity_items)
         (application as MyApplication).appComponent.inject(this)
 
         requestWritePermission()
@@ -53,12 +53,12 @@ class DownloadActivity : AppCompatActivity(), OnItemAdapterClick {
         this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
 
     private fun initRecycler() {
-        recyclerview.adapter = downloadAdapter
-        downloadAdapter.setOnItemAdapterClick(this)
+        recyclerview.adapter = itemsAdapter
+        itemsAdapter.setOnItemAdapterClick(this)
     }
 
     private fun subscribeToMoviesListObserver() {
-        downloadViewModel.getMoviesList().observe(this, {
+        itemsViewModel.getMoviesList().observe(this, {
             when (it.status) {
                 LOADING -> Log.d("TAG", "subscribeToMoviesListObserver: " + it.status)
                 ERROR -> Log.d("TAG", "subscribeToMoviesListObserver: " + it.message)
@@ -74,8 +74,8 @@ class DownloadActivity : AppCompatActivity(), OnItemAdapterClick {
         Handler().postDelayed({
             //simulate that response is success
             progressBar.visibility = View.GONE
-            downloadAdapter.setContext(applicationContext)
-            downloadAdapter.setAdapterModel(downloadViewModel.getAdapterList())
+            itemsAdapter.setContext(applicationContext)
+            itemsAdapter.setAdapterModel(itemsViewModel.getAdapterList())
         }, 1000)
     }
 
@@ -89,17 +89,17 @@ class DownloadActivity : AppCompatActivity(), OnItemAdapterClick {
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(apkWorkRequest.id)
             .observe(this, { listOfWorkInfo: WorkInfo ->
                 val progress = listOfWorkInfo.progress.getInt("Progress", 0)
-                downloadViewModel.updateAdapterList(progress, DownloadStatus.DOWNLOADING)
-                downloadAdapter.updateList(downloadViewModel.getAdapterList())
+                itemsViewModel.updateAdapterList(progress, DownloadStatus.DOWNLOADING)
+                itemsAdapter.updateList(itemsViewModel.getAdapterList())
                 when (listOfWorkInfo.state) {
                     WorkInfo.State.SUCCEEDED -> {
                         Log.d("TAG", "downloadClickedFile: ")
-                        downloadViewModel.updateAdapterList(100, DownloadStatus.DOWNLOADED)
-                        downloadAdapter.updateList(downloadViewModel.getAdapterList())
+                        itemsViewModel.updateAdapterList(100, DownloadStatus.DOWNLOADED)
+                        itemsAdapter.updateList(itemsViewModel.getAdapterList())
                     }
                     WorkInfo.State.FAILED -> {
-                        downloadViewModel.updateAdapterList(0, DownloadStatus.FAIL)
-                        downloadAdapter.updateList(downloadViewModel.getAdapterList())
+                        itemsViewModel.updateAdapterList(0, DownloadStatus.FAIL)
+                        itemsAdapter.updateList(itemsViewModel.getAdapterList())
                     }
                 }
             })
