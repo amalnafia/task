@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.DownloadActivity">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -26,5 +26,5 @@
         android:layout_marginTop="@dimen/small_margin"
         android:layout_marginEnd="@dimen/small_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/main_activity_item" />
+        tools:listitem="@layout/download_activity_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

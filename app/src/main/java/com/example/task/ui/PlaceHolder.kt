@@ -1,4 +1,4 @@
 package com.example.task.ui
 
-class placeHolder {
+class PlaceHolder {
 }

@@ -6,28 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.task.R
-import com.example.task.model.Movie
-import kotlinx.android.synthetic.main.main_activity_item.view.*
+import com.example.task.model.Movies
+import kotlinx.android.synthetic.main.download_activity_item.view.*
 import javax.inject.Inject
 
 
-class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class DownloadAdapter @Inject constructor() : RecyclerView.Adapter<DownloadAdapter.ViewHolder>() {
 
-    private var list: List<Movie>? = null
+    private var list: List<Movies>? = null
     private var context: Context? = null
 
     fun setContext(context: Context?) {
         this.context = context
     }
 
-    fun setAdapterModel(list: List<Movie>?) {
+    fun setAdapterModel(list: List<Movies>?) {
         this.list = list
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.main_activity_item, parent, false))
+            .inflate(R.layout.download_activity_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -39,10 +39,10 @@ class MainAdapter @Inject constructor() : RecyclerView.Adapter<MainAdapter.ViewH
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(movie: Movie) {
-            itemView.fileName.text = movie.name
-            itemView.downloadStatus.text = movie.downloadStatus
-            if (movie.downloadStatus == "Downloaded")
+        fun bind(movies: Movies) {
+            itemView.fileName.text = movies.name
+            itemView.downloadStatus.text = movies.downloadStatus
+            if (movies.downloadStatus == "Downloaded")
                 itemView.progressBar.visibility = View.GONE
         }
     }

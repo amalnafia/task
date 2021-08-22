@@ -1,9 +1,7 @@
 package com.example.task.di
 
 import android.content.Context
-import com.example.task.di.AppModule
-import com.example.task.di.NetworkModule
-import com.example.task.ui.main.MainActivity
+import com.example.task.ui.main.DownloadActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -16,5 +14,5 @@ interface ApplicationComponent {
         fun create(@BindsInstance context: Context): ApplicationComponent
     }
 
-    fun inject(main: MainActivity)
+    fun inject(download: DownloadActivity)
 }

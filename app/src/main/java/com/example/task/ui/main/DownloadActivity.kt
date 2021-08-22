@@ -8,30 +8,30 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.task.R
 import com.example.task.application.MyApplication
 import com.example.task.enum.ViewStatus.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_download.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class DownloadActivity : AppCompatActivity() {
     @Inject
-    lateinit var mainViewModel: MainViewModel
+    lateinit var downloadViewModel: DownloadViewModel
 
     @Inject
-    lateinit var mainAdapter: MainAdapter
+    lateinit var downloadAdapter: DownloadAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_download)
         (application as MyApplication).appComponent.inject(this)
 
         initRecycler()
-        subscribeToMovieListObserver()
+        subscribeToMoviesListObserver()
     }
 
-    private fun subscribeToMovieListObserver() {
+    private fun subscribeToMoviesListObserver() {
 
-        mainViewModel.getMoviesList().observe(this, {
+        downloadViewModel.getMoviesList().observe(this, {
             when (it.status) {
-                LOADING -> Log.d("TAG", "subscribeToMovieListObserver: " + it.status)
-                ERROR -> Log.d("TAG", "subscribeToMovieListObserver: " + it.message)
+                LOADING -> Log.d("TAG", "subscribeToMoviesListObserver: " + it.status)
+                ERROR -> Log.d("TAG", "subscribeToMoviesListObserver: " + it.message)
                 SUCCESS -> {
                     //when response is success TODO
                 }
@@ -44,12 +44,12 @@ class MainActivity : AppCompatActivity() {
         Handler().postDelayed({
             //simulate that response is success
             progressBar.visibility = View.GONE
-            mainAdapter.setContext(applicationContext)
-            mainAdapter.setAdapterModel(mainViewModel.getAdapterList())
+            downloadAdapter.setContext(applicationContext)
+            downloadAdapter.setAdapterModel(downloadViewModel.getAdapterList())
         }, 1000)
     }
 
     private fun initRecycler() {
-        recyclerview.adapter = mainAdapter
+        recyclerview.adapter = downloadAdapter
     }
 }

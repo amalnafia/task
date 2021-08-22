@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.task.enum.ViewStatus
-import com.example.task.model.Movie
+import com.example.task.model.Movies
 import com.example.task.model.Resource
 import com.example.task.repo.MainRepo
 import com.example.task.util.Fail
@@ -14,14 +14,14 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val mainRepo: MainRepo) : ViewModel() {
+class DownloadViewModel @Inject constructor(private val mainRepo: MainRepo) : ViewModel() {
 
 
-    private var moviesListMediatorLiveData: MutableLiveData<Resource<List<Movie>>> =
-        MutableLiveData<Resource<List<Movie>>>()
+    private var moviesListMediatorLiveData: MutableLiveData<Resource<List<Movies>>> =
+        MutableLiveData<Resource<List<Movies>>>()
 
-    fun getMoviesList(): MutableLiveData<Resource<List<Movie>>> {
-        when (val getMovieFromRepoResult = mainRepo.getMovies()) {
+    fun getMoviesList(): MutableLiveData<Resource<List<Movies>>> {
+        when (val getMoviesFromRepoResult = mainRepo.getMovies()) {
             is Fail -> {
                 //TODO handle api fail
                 Log.e("TAG", "VIEW MODEL FAIL")
@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(private val mainRepo: MainRepo) : ViewMo
             }
             is Success -> {
                 Log.e("TAG", "VIEW MODEL SUCCESS")
-                getMovieFromRepoResult.response.subscribeOn(Schedulers.io())
+                getMoviesFromRepoResult.response.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread()).doOnSubscribe {
                         //TODO Loading until subscribe
                         moviesListMediatorLiveData.value = Resource(ViewStatus.LOADING, null, null)
@@ -44,37 +44,37 @@ class MainViewModel @Inject constructor(private val mainRepo: MainRepo) : ViewMo
         return moviesListMediatorLiveData
     }
 
-    fun getAdapterList(): MutableList<Movie> {
-        val list: MutableList<Movie> = ArrayList<Movie>()
-        list.add(Movie(1,
+    fun getAdapterList(): MutableList<Movies> {
+        val list: MutableList<Movies> = ArrayList<Movies>()
+        list.add(Movies(1,
             "VIDEO",
             "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4",
             "Video 1", "Downloading"))
-        list.add(Movie(2,
+        list.add(Movies(2,
             "VIDEO",
             "https://bestvpn.org/html5demos/assets/dizzy.mp4",
             "Video 2", "Downloaded"))
-        list.add(Movie(3,
+        list.add(Movies(3,
             "PDF",
             "https://kotlinlang.org/docs/kotlin-reference.pdf",
             "PDF 3", "Downloaded"))
-        list.add(Movie(4,
+        list.add(Movies(4,
             "VIDEO",
             "https://storage.googleapis.com/exoplayer-test-media-1/mp4/frame-counter-one-hour.mp4",
             "Video 4", "Downloaded"))
-        list.add(Movie(5,
+        list.add(Movies(5,
             "VIDEO",
             "https://storage.googleapis.com/exoplayer-test-media-1/mp4/frame-counter-one-hour.mp4",
             "PDF 5", "Downloaded"))
-        list.add(Movie(6,
+        list.add(Movies(6,
             "VIDEO",
             "https://storage.googleapis.com/exoplayer-test-media-1/mp4/frame-counter-one-hour.mp4",
             "Video 6", "Downloaded"))
-        list.add(Movie(7,
+        list.add(Movies(7,
             "VIDEO",
             "https://storage.googleapis.com/exoplayer-test-media-1/mp4/frame-counter-one-hour.mp4",
             "Video 7", "Downloaded"))
-        list.add(Movie(8,
+        list.add(Movies(8,
             "VIDEO",
             "https://storage.googleapis.com/exoplayer-test-media-1/mp4/frame-counter-one-hour.mp4",
             "Video 8", "Downloaded"))
